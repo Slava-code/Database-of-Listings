@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>All Listings</title>
+</head>
+<body>
+  <h1>All Listings</h1>
+  <!-- uses javaScript to insert listings -->
+  <div id="listings-container"></div>
+  <!-- link to the form page -->
+  <a href="/index.html">← Submit a New Listing</a>
+
+  <script>
+    async function loadListings() {
+      try {
+        // send GET request and convert to JS array
+        const res = await fetch('/listings');
+        const data = await res.json();
+
+        const container = document.getElementById('listings-container');
+        // handling when no listing are in database
+        if (data.length === 0) {
+          container.innerHTML = '<p>No listings found.</p>';
+          return;
+        }
+        // spawn and fill a new div element for each element in database
+        data.forEach(listing => {
+          const div = document.createElement('div');
+          div.style.border = '1px solid #aaa';
+          div.style.margin = '10px';
+          div.style.padding = '10px';
+
+          div.innerHTML = `
+            <h2>${listing.title}</h2>
+            <p><strong>Description:</strong> ${listing.description}</p>
+            <p><strong>Rent:</strong> $${listing.rent}</p>
+            <p><strong>Address:</strong> ${listing.address}</p>
+            <p><strong>Rooms:</strong> ${listing.num_rooms}</p>
+            <p><strong>Contact:</strong> ${listing.contact_info}</p>
+            <p><em>Posted on: ${new Date(listing.created_at).toLocaleString()}</em></p>
+          `;
+          
+          container.appendChild(div);
+        });
+      } catch (err) {
+        console.error('Error fetching listings:', err);
+      }
+    }
+
+    loadListings();
+  </script>
+</body>
+</html>

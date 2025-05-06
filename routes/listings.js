@@ -18,7 +18,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-// retrieve all listings
+// retrieve all listings (in .json)
 router.get('/', async (req, res) => {
   try {
     // retrieval by order of creation (newest first)
