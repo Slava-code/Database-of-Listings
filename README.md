@@ -1,4 +1,4 @@
-# Database of Listings
+# Listings Database
 Submit listing information via a form. Uses Node.js for backend, MySQL as the database, and HTML for simple frontend interface.
 ## Listing Info
 The following are stored about each listing:
