@@ -25,7 +25,7 @@ PORT=3000
 ```
 Replace DB_USER and DB_PASSWORD values as needed to access your MySQL.
 ### 3. Setup MySQL database
-Run in your console:
+Run in mysql prompt command line:
 ```
 CREATE DATABASE listings_db;
 USE listings_db;
